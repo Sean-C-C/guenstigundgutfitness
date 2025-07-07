@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Günstig Gut Fitness</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        /* Global Fade-In Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+        
+
+        /* Header Styles */
+        header {
+            background-image: url('images/Gym.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            min-height: 300px;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+            animation-delay: 0.2s;
+        }
+
+        header > * {
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+            animation-delay: 0.4s;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #68838B;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+            animation-delay: 0.6s;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 1rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #4da6ff;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Sections with staggered animations */
+        section {
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        #home {
+            animation-delay: 0.6s;
+        }
+
+        #about {
+            animation-delay: 0.8s;
+        }
+
+        #plans {
+            animation-delay: 1.0s;
+        }
+
+        #testimonials {
+            animation-delay: 1.2s;
+        }
+
+        #contact {
+            animation-delay: 1.4s;
+        }
+
+        /* Rest of your existing styles... */
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #68838B;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 3rem 0;
+        }
+
+        .feature {
+            flex-basis: 30%;
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #1e5799;
+            margin-bottom: 1rem;
+        }
+
+        .testimonials {
+            background-color: #f0f0f0;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .testimonial {
+            max-width: 800px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            margin-top: 1rem;
+            font-style: normal;
+        }
+
+        .pricing {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .pricing-plans {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .plan {
+            background: white;
+            padding: 2rem;
+            margin: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            flex-basis: 300px;
+            transition: transform 0.3s;
+        }
+
+        .plan:hover {
+            transform: scale(1.03);
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            color: #1e5799;
+            margin-bottom: 1rem;
+        }
+
+        .plan-price {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .contact {
+            background-color: 	#68838B;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-success {
+            display: none;
+            background: #4CAF50;
+            color: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #828282;
+            width: 100%;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+            animation-delay: 1.8s;
+        }
+
+        .social-links {
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .feature {
+                flex-basis: 100%;
+            }
+            
+            .pricing-plans {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem;
+            }
+        }
+        
+/* Füge dies in deinen <style>-Bereich ein, am besten am Ende der Media Queries */
+
+@media (max-width: 768px) {
+    /* Anpassungen für das Kontaktformular */
+    .contact-form {
+        padding: 0 1rem; /* Fügt seitlichen Abstand hinzu */
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: 100%;
+        box-sizing: border-box; /* Stellt sicher, dass Padding im Width enthalten ist */
+        max-width: 100%; /* Verhindert Überlauf */
+    }
+    
+    /* Türkisen Hintergrund breiter machen */
+    .contact {
+        padding: 3rem 1rem; /* Reduziert den horizontalen Padding */
+    }
+    
+    /* Formular-Elemente etwas kleiner */
+    .form-group input,
+    .form-group select {
+        padding: 0.6rem;
+    }
+    
+    .form-group textarea {
+        padding: 0.6rem;
+        min-height: 120px; /* Behält eine gute Höhe bei */
+    }
+    
+    /* Button anpassen */
+    .cta-button {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Weitere Anpassungen für sehr kleine Bildschirme */
+    .contact-form {
+        width: 95%; /* Macht das Formular etwas schmaler */
+        margin: 0 auto; /* Zentriert es */
+    }
+    
+    .form-group label {
+        font-size: 0.9rem; /* Kleinere Labels */
+    }
+}
+
+        /* Transformation Images (neu strukturiert) */
+.transformation-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.transformation-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.transformation-figure {
+    text-align: center;
+    max-width: 300px;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+.transformation-img {
+    width: 100%;
+    min-width: 300px;
+    max-width: 300px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    object-fit: cover;
+}
+
+.transformation-caption {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: #555;
+}
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">GÜNSTIG GUT FITNESS</div>
+        <div class="tagline">Günstige Personalisierte Trainingspläne für echte Ergebnisse</div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#home">Startseite</a></li>
+            <li><a href="#about">Wieso uns</a></li>
+            <li><a href="#plans">Trainingspläne</a></li>
+            <li><a href="#testimonials">Über uns</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <section id="home" class="hero">
+            <h1>Maßgeschneiderte Trainingspläne für Ihre Ziele</h1>
+            <p>Erhalten Sie einen personalisierten Fitnessplan, der zu Ihrem Lebensstil passt und Ihnen hilft, die gewünschten Ergebnisse zu erzielen. Kein Rätselraten, nur wissenschaftlich fundiertes Training von einem erfahrenen Coach.</p>
+            <a href="#plans" class="cta-button">Jetzt Plan erhalten</a>
+        </section>
+        
+        <section id="about" class="features">
+            <div class="feature">
+                <div class="feature-icon">💪</div>
+                <h3>Personalisierter Ansatz & Wissenschaft</h3>
+                <p>Jeder Plan wird basierend auf Ihrem Fitnesslevel, Ihren Zielen und der verfügbaren Ausrüstung erstellt. Keine generischen Programme. Alles ist mit Wissenschaftlcihen Studien hinterlegt. Hinterfragen sie alles an ihrem Trainingsplan und wir können ihnen Belege und Studien zu diesem Aspekt vorweisen.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">📱</div>
+                <h3>Digitale Lieferung</h3>
+                <p>Erhalten Sie Ihren Plan per E-Mail im PDF-Format, auf allen Geräten abrufbar.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>Günstige und Bewährte Ergebnisse</h3>
+                <p>Im Vergleich zur anderen Anbietern sind wir günstig, da wir junge Teenagers sind. Jedoch haben sich unsere Trainingsmethoden unter Freunden stark bewährt und wir haben Zeit, in das perfektionieren unserer Pläne aufgrund der neusten wissenschaftlichen Endteckungen gesteckt.</p>
+            </div>
+        </section>
+        
+        <section id="plans" class="pricing">
+            <h2>Wählen Sie Ihren Plan</h2>
+            <p>Wählen Sie die Option, die am besten zu Ihrer Fitnessreise passt</p>
+            
+            <div class="pricing-plans">
+                <div class="plan">
+                    <div class="plan-name">1 maliger Trainingsplan</div>
+                    <div class="plan-price">20 Fr.-</div>
+                    <ul class="plan-features">
+                        <li>Personalisierter Trainingsplan</li>
+                        <li>Grundlegende Trainings- und Ernährungsrichtlinien</li>
+                        <li>PDF-Format</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Jetzt starten</a>
+                </div>
+                
+                <div class="plan">
+                    <div class="plan-name">30 min Telefon <br> consulting</div>
+                    <div class="plan-price">20 Fr.-</div>
+                    <ul class="plan-features">
+                        <li>Gespräch mit Kunde</li>
+                        <li>Mündliche Tipps und Feedback</li>
+                        <li>Anpassungen des Trainingplans nach Bedarf</li>
+                        <li>Nur kompitabel mit Trainingsplan</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Jetzt starten</a>
+                </div>
+                
+                <div class="plan">
+                    <div class="plan-name">1 maliger Trainingsplan</div>
+                    <div class="plan-price">75 Fr.-</div>
+                    <ul class="plan-features">
+                        <li>Personalisierter Trainingsplan</li>
+                        <li>Grundlegende Trainings- und Ernährungsrichtlinien</li>
+                        <li>PDF-Format</li>
+                        <li>Links zu Videos für jede Übung</li>
+                        <li>1x consulting telefon</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Jetzt starten</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials">
+            <h2>Über uns</h2>
+            <p>Wir sind zwei fitnessbegeisterte Jugendliche, die selbst täglich im Gym stehen.</p>
+            <p>Im Internet gibt es unendlich viele Trainingsmethoden, Supplement-Tipps und Wunderprogramme. Die meisten davon sind Zeitverschwendung oder sogar schädlich. Wir setzen auf das, was wirklich funktioniert: einfache, wissenschaftlich fundierte Prinzipien, angepasst an dein Level und deine Ziele.</p>
+            <p>Unser Ansatz ist klar:<br>
+            Kein unnötiger Komplex – nur die Basics, die wirklich etwas bringen<br>
+            Keine falschen Versprechen – ehrliches Training für echte Ergebnisse<br>
+            Kein One-Size-Fits-All – dein Plan passt sich dir an, nicht umgekehrt</p>
+            <br><br>
+            <p>Fitness soll dich stärker machen – nicht verwirren. Wenn du bereit bist, richtig zu trainieren, helfen wir dir dabei.</p>
+            
+            <h2 style="text-align: center; margin-top: 3rem;">Unsere Transformationen</h2>
+
+            <div class="transformation-container">
+  <!-- Sean Transformation -->
+  <div class="transformation-row">
+    <figure class="transformation-figure">
+        <img src="images/Sean_Cronin1.jpg" alt="Sean Cronin" class="transformation-img">
+        <figcaption class="transformation-caption">Sean (Coach 1) nach 1 Jahr</figcaption>
+    </figure>
+
+    <figure class="transformation-figure">
+        <img src="images/Sean_Cronin0.jpg" alt="Sean vor 1 Jahr" class="transformation-img">
+        <figcaption class="transformation-caption">Sean (Coach 1) vor 1 Jahr</figcaption>
+    </figure>
+  </div>
+
+  <!-- Melvin Transformation -->
+  <div class="transformation-row">
+    <figure class="transformation-figure">
+        <img src="images/Melvin_Luzio1.jpg" alt="Melvin nach 1 Jahr" class="transformation-img">
+        <figcaption class="transformation-caption">Melvin (Coach 2) nach 1 Jahr</figcaption>
+    </figure>
+
+    <figure class="transformation-figure">
+        <img src="images/Melvin_Luzio0.jpg" alt="Melvin vor 1 Jahr" class="transformation-img">
+        <figcaption class="transformation-caption">Melvin (Coach 2) vor 1 Jahr</figcaption>
+    </figure>
+  </div>
+</div>
+
+    <br><br>
+    <section id="contact" class="contact">
+        <h2>Bereit für Ihre Transformation?</h2>
+        <p>Füllen Sie das Formular aus und wir senden Ihnen innerhalb von 24 Stunden Ihren personalisierten Plan.</p>
+        
+        <div class="contact-form">
+            <form action="https://formspree.io/f/manjgwee" method="POST">
+                <div id="form-success" class="form-success" style="display:none;">
+                    Danke! Wir melden uns so schnell wie Möglich bei Ihnen.
+                </div>
+                
+                <div class="form-group">
+                    <label for="name">Vorname & Nachname*</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">E-Mail Adresse*</label>
+                    <input type="email" id="email" name="_replyto" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="plan">Gewünschter Plan*</label>
+                    <select id="plan" name="plan" required>
+                        <option value="" disabled selected>Plan auswählen</option>
+                        <option value="Einmaliger Trainingsplan (20 CHF)">Einmaliger Trainingsplan - 20 CHF</option>
+                        <option value="30min Consulting (20 CHF)">30min Telefon-Consulting - 20 CHF</option>
+                        <option value="Kombi-Paket (75 CHF)">Trainingsplan Premium - 75 CHF</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Besondere Wünsche/Ziele</label>
+                    <textarea id="message" name="message" rows="4" placeholder="z.B. verfügbare Ausrüstung, spezifische Ziele..."></textarea>
+                </div>
+                
+                <button type="submit" class="cta-button">Plan jetzt anfordern</button>
+                
+                <input type="hidden" name="_subject" value="Neue Trainingsplan-Anfrage">
+                <input type="text" name="_gotcha" style="display:none;">
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo">Günstig und Gut Fitness</div>
+        <p>Kontakt: E-MAIL: seancronin.business@gmail.com TEL:077 499 09 46</p> 
+        <p>&copy; Günstig und Gut Fitness Coaching. Alle Rechte vorbehalten.</p>
+    </footer>
+
+    <script>
+        // Handle form submission
+        const form = document.querySelector('form');
+        const formSuccess = document.getElementById('form-success');
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    formSuccess.style.display = 'block';
+                    form.reset();
+                    setTimeout(() => {
+                        formSuccess.style.display = 'none';
+                    }, 5000);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        // Preload images for better performance
+        const images = [
+            'Images/Gym.jpg',
+            'images/Sean_Cronin1.jpg',
+            'images/Sean_Cronin0.jpg',
+            'images/Melvin_Luzio1.jpg',
+            'images/Melvin_Luzio0.jpg'
+        ];
+        
+        images.forEach(img => {
+            new Image().src = img;
+        });
+    </script>
+</body>
+</html>
